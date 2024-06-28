@@ -4,14 +4,15 @@ This code example demonstrates the UART transmit and receive operation in CYW208
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-hal-uart-dma)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzg1NDAiLCJTcGVjIE51bWJlciI6IjAwMi0zODU0MCIsIkRvYyBUaXRsZSI6IkhBTDogVUFSVCBETUEiLCJyaWQiOiJnb3dkYWNtIiwiRG9jIHZlcnNpb24iOiIxLjEuMCIsIkRvYyBMYW5ndWFnZSI6IkVuZ2xpc2giLCJEb2MgRGl2aXNpb24iOiJNQ0QiLCJEb2MgQlUiOiJJQ1ciLCJEb2MgRmFtaWx5IjoiQlRBQkxFIn0=)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzg1NDAiLCJTcGVjIE51bWJlciI6IjAwMi0zODU0MCIsIkRvYyBUaXRsZSI6IkhBTDogVUFSVCBETUEiLCJyaWQiOiJnb3dkYWNtIiwiRG9jIHZlcnNpb24iOiIxLjIuMCIsIkRvYyBMYW5ndWFnZSI6IkVuZ2xpc2giLCJEb2MgRGl2aXNpb24iOiJNQ0QiLCJEb2MgQlUiOiJJQ1ciLCJEb2MgRmFtaWx5IjoiQlRBQkxFIn0=)
 
 ## Requirements
 
-- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.0 or later (tested with v3.0)
+- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.2 or later (tested with v3.2)
 - Board support package (BSP) minimum required version:
    - CYW920829M2EVK-02: v1.0.1
-   - CYW989829M2EVB-01: v1.0.1
+   - CYW989829M2EVB-01: v1.0.4
+   - CYW989829M2EVB-03: v1.0.4
 - Programming language: C
 - Associated parts: [AIROC&trade; CYW20829 Bluetooth&reg; LE SoC](https://www.infineon.com/cms/en/product/promopages/airoc20829) and AIROC&trade; CYW89829 Bluetooth&reg; LE SoC
 
@@ -23,12 +24,12 @@ This code example demonstrates the UART transmit and receive operation in CYW208
 
 ## Supported kits (make variable 'TARGET')
 - [AIROC&trade; CYW20829 Bluetooth&reg; LE Evaluation Kit](https://www.infineon.com/CYW920829M2EVK-02) (`CYW920829M2EVK-02`) - Default value of `TARGET`
-- AIROC&trade; CYW89829 Bluetooth&reg; LE Evaluation Kit (`CYW989829M2EVB-01`)
+- AIROC&trade; CYW89829 Bluetooth&reg; LE Evaluation Kit (`CYW989829M2EVB-01`,`CYW989829M2EVB-03`)
 ## Hardware setup
 
 This example uses the board's default configuration. See the kit user guide to ensure that the board is configured correctly.
 
-The AIROC&trade; CYW20829 Bluetooth&reg; CYW89829 Bluetooth&reg; Kit (CYW920829M2EVK-02) ships with KitProg3 version 2.21 installed. The ModusToolbox&trade; requires KitProg3 with latest version 2.40. Before using this code example, make sure that the board is upgraded to KitProg3. The tool and instructions are available in the [Firmware Loader](https://github.com/Infineon/Firmware-loader) GitHub repository. If the board is not upgraded, you will see an error such as "unable to find CMSIS-DAP device" or "KitProg firmware is out of date".
+The AIROC&trade; CYW20829 Bluetooth&reg; Kit (CYW920829M2EVK-02) ships with KitProg3 version 2.21 installed. The ModusToolbox&trade; requires KitProg3 with latest version 2.40. Before using this code example, make sure that the board is upgraded to KitProg3. The tool and instructions are available in the [Firmware Loader](https://github.com/Infineon/Firmware-loader) GitHub repository. If the board is not upgraded, you will see an error such as "unable to find CMSIS-DAP device" or "KitProg firmware is out of date".
 
 See the following pin assignment to configure the corresponding pin for UART_RX and UART_TX in all the three modes.
 
@@ -38,6 +39,7 @@ See the following pin assignment to configure the corresponding pin for UART_RX 
  |:----------------------------------: | :--------: | :--------:|
  |CYW920829M2EVK-02                    |    P1_2    |    P1_3   |
  |CYW989829M2EVB-01                    |    P1_2    |    P1_3   |
+ |CYW989829M2EVB-03                    |    P1_2    |    P1_3   |
 
 <br>
 
@@ -196,7 +198,7 @@ You can debug the example to step through the code. In the IDE, use the **\<Appl
 
 ## Design and implementation
 
-The Arm&reg; Cortex&reg;-M33 (CM33) CPU in CYW920829M2EVK-02 or CYW989829M2EVB-01 MCU controls both UART transmit and receive operation from the chip; therefore, you can test the functionality on a single kit as well as on two of the same kits. Configure one in UART_TX mode and another in UART_RX mode.
+The Arm&reg; Cortex&reg;-M33 (CM33) CPU in CYW920829M2EVK-02, CYW989829M2EVB-01 or CYW989829M2EVB-03 MCU controls both UART transmit and receive operation from the chip; therefore, you can test the functionality on a single kit as well as on two of the same kits. Configure one in UART_TX mode and another in UART_RX mode.
 
 
 
@@ -233,6 +235,7 @@ Document title: *CE238540* - *HAL: UART_DMA*
  ------- | ---------------------
  1.0.0   | New code example
  1.1.0   | Added support for CYW989829M2EVB-01
+ 1.2.0   | Updated device mpn of CYW989829M2EVB-01 and added support for CYW989829M2EVB-03
 <br>
 
 All referenced product or service names and trademarks are the property of their respective owners.
